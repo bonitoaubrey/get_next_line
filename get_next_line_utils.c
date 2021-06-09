@@ -38,19 +38,22 @@ char	*ft_strcpy(char *dst, char *src)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*dst;
-	int		len;
+	char	*new_str;
+	int		i;
 
 	if (!s1)
 	{
-		dst = ft_strdup(s2);
-		return (dst);
-	}	
-	len = ft_strlen(s1) + ft_strlen(s2);
-	dst = (char *)malloc((sizeof(char) * len) + 1);
-	if (!dst)
+		new_str = ft_strdup(s2);
+		return (new_str);
+	}
+	new_str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!new_str)
 		return (NULL);
-	ft_strcpy(dst, s1);
-	ft_strcpy(&dst[ft_strlen(s1)], s2);
-	return (dst);
+	i = 0;
+	while (*s1)
+		new_str[i++] = *(char *)s1++;
+	while (*s2)
+		new_str[i++] = *(char *)s2++;
+	new_str[i] = '\0';
+	return (new_str);
 }
